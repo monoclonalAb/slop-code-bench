@@ -1,0 +1,27 @@
+internal_name: gpt-6-astra
+provider: openai
+pricing:
+  # OpenAI standard rates (developers.openai.com/api/docs/pricing, Oct 2026)
+  # for prompts of at most 272K input tokens. Longer prompts cost $20 input,
+  # $2 cache read, $25 cache write and $75 output. No prompt_tiers: Codex
+  # caps this model's context at 272K by default, and the Codex agent prices
+  # cumulative session totals, which would always land in the long tier.
+  input: 10.00
+  output: 50.00
+  cache_read: 1.00
+  cache_write: 12.50
+aliases:
+  - gpt-6-astra
+  - astra
+provider_slugs:
+  # Portkey model-catalog slug: "@<integration>/<model>", where <integration>
+  # is the provider integration name in your Portkey workspace.
+  portkey: "@openai/gpt-6-astra"
+
+# Needs Codex >= 0.153.0. Codex defaults this model to low reasoning effort.
+# Endpoints resolve against the CLI provider, not this config's provider.
+# Use --model portkey/gpt-6-astra to route Codex through the Portkey gateway.
+agent_specific:
+  codex:
+    endpoint: openai
+    thinking: high

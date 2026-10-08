@@ -1,0 +1,39 @@
+# Prices from platform.claude.com/docs/en/about-claude/pricing (Oct 2026).
+# Cache reads are 0.05x input on Opus 5.5 (0.1x on earlier models). The
+# full 1M context is billed at these rates, so there are no prompt tiers.
+internal_name: claude-opus-5-5
+provider: anthropic
+pricing:
+  input: 4
+  output: 20
+  cache_read: 0.20
+  cache_write: 5
+# Claude 5 family: adaptive thinking, steered by effort level. The API
+# default effort for Opus 5.5 is medium; set thinking= on the run.
+thinking_style: effort
+aliases:
+  - claude-opus-5.5
+  - claude-opus-5-5
+  - opus-5.5
+  - opus-5-5
+
+agent_specific:
+  claude_code:
+    endpoint: anthropic
+
+  mini_swe:
+    model_name: anthropic/claude-opus-5-5
+    model_class: litellm
+
+  codex:
+    thinking: high
+
+  opencode:
+    provider_name: anthropic
+
+provider_slugs:
+  bedrock: anthropic.claude-opus-5-5
+  foundry: claude-opus-5-5
+  # Portkey model-catalog slug: "@<integration>/<model>", where <integration>
+  # is the provider integration name in your Portkey workspace.
+  portkey: "@anthropic/claude-opus-5-5"
